@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Air Quality Estimator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Fuzzy Air Quality Calculator</h1>
+        <form action="/result" method="post">
+            <label for="pm25">PM2.5 (µg/m³):</label>
+            <input type="number" name="pm25" step="0.1" required>
+
+            <label for="pm10">PM10 (µg/m³):</label>
+            <input type="number" name="pm10" step="0.1" required>
+
+            <label for="no2">NO₂ (ppb):</label>
+            <input type="number" name="no2" step="0.1" required>
+
+            <label for="co">CO (ppm):</label>
+            <input type="number" name="co" step="0.1" required>
+
+            <button type="submit">Check Air Quality</button>
+        </form>
+
+        {% if score %}
+        <div class="result">
+            <h2>Result</h2>
+            <p><strong>Air Quality Score:</strong> {{ score }}</p>
+            <p><strong>Status:</strong> {{ status }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
